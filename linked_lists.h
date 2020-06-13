@@ -18,24 +18,18 @@ typedef struct linked_list {
 
 linked_list *init_linked_list();
 //initialize new linked list, returns pointer to it. NULL for fail.
-
+    
 node *init_node(char *string, void *data);
 //create a node, set data pointer to struct data. NULL for fail.
 
-int insert_after_node(node *old_node, node *new_node);
-/* 
- * Adds a new node after old node.
- * return value: 0 -> success
- *               1 -> a node is NULL
- *              -1 -> fail
- */
+void insert_after_node(node *old_node, node *new_node);
+//Adds new_node after old_node.
+
 int insert_to_linked_list(linked_list *linked_list, node *new_node);
 /* 
  * Adds a new node to a linked list.
  * return value: 0 -> success
  *               1 -> node is NULL
- *               2 -> uninitialized list
- *              -1 -> error
  */
 
 node *find_in_linked_list_previous(linked_list *linked_list, char *string);
