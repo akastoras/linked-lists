@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <linked_lists.h>
+#include "linked_lists.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -41,7 +41,7 @@ node *init_node(char *string, void *data)
         nd->string = malloc(strlen(string) * sizeof(char));
     } while(nd->string == NULL);
 
-    int res = strcpy(nd->string, string);
+    char *res = strcpy(nd->string, string);
     if (res != nd->string) { fprintf(stderr, "linked_lists.c/init_node/strcpy() unexpected return value.\n"); exit(1); }
 
     nd->data = (typeof(data))data;

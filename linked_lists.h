@@ -6,7 +6,7 @@
 typedef struct node {
     char *string;
     void *data;
-    node *next;
+    struct node *next;
 } node;
 
 typedef struct linked_list {
