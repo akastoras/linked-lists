@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include "linked_lists.h"
 #include <string.h>
 #include <stdlib.h>
+#include "linked_lists.h"
+
 
 linked_list *init_linked_list()
 {
@@ -26,7 +27,6 @@ linked_list *init_linked_list()
 
     return ll;
 }
-
 
 node *init_node(char *string, void *data)
 {
@@ -74,3 +74,87 @@ int insert_to_linked_list(linked_list *linked_list, node *new_node)
     
     return 0;
 }
+
+node *find_in_linked_list_previous(linked_list *linked_list, char *string)
+{
+    node *ptr;
+
+    for (ptr = linked_list->head; ptr->next != NULL && strcmp(ptr->next->string, string) != 0; ptr = ptr->next);
+
+    if (ptr->next == NULL) {
+        return NULL;
+    }
+    else {
+        return ptr;
+    }
+}
+
+node *find_in_linked_list(linked_list *linked_list, char *string)
+{
+    node *ptr = find_in_linked_list_previous(linked_list, string);
+
+    if (ptr == NULL) {
+        return NULL;
+    }
+    else {
+        return ptr->next;
+    }
+}
+
+int delete_next_node(node *prev_node)
+{
+    if (prev_node->next) {
+        return 1;
+    }
+
+    //change the pointers
+    node *ptr = prev_node->next;
+    prev_node->next = ptr->next;
+    
+    //free memory
+    free(ptr);
+
+    return 0;
+}
+
+int delete_from_linked_list(linked_list *linked_list, char *string)
+{
+    //fing previous node
+    node *prev_node = find_in_linked_list_previous(linked_list, string);
+
+    if (prev_node == NULL) {
+        return 1;
+    }
+
+    int res = delete_next_node(prev_node);
+
+    if (res == 0) {
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}
+
+void delete_linked_list(linked_list *linked_list)
+{
+    node *ptr;
+
+    for (ptr = linked_list->head; ptr != NULL; ptr = ptr->next) {
+        free(ptr);
+    }
+
+    free(linked_list);
+    linked_list = NULL;
+}
+
+void print_linked_list(linked_list *linkedlist)
+{
+    node *ptr;
+
+    printf("##");
+    for (ptr = linkedlist->head; ptr->next != NULL; ptr = ptr->next) {
+        printf("%s\n", ptr->next->string);
+    }
+}
+

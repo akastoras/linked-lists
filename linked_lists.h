@@ -38,12 +38,17 @@ node *find_in_linked_list_previous(linked_list *linked_list, char *string);
 node *find_in_linked_list(linked_list *linked_list, char *string);
 //finds the node of the given string and returns pointer to it. Else returns NULL
 
-int delete_from_linked_list(linked_list *linked_list, node *node);
+int delete_next_node(node *prev_node);
+/*
+ *Deletes the node after the given node
+ *return value: 0 -> success
+ *              1 -> not existing node
+ */
+int delete_from_linked_list(linked_list *linked_list, char *string);
 /* 
- * Adds a new node after old node.
+ * Deletes a new node after old node.
  * return value: 0 -> success
  *               1 -> node is NULL
- *               2 -> uninitialized list
  *              -1 -> fail
  */
 
