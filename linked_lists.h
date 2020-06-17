@@ -25,17 +25,24 @@ node *init_node(char *string, void *data);
 void insert_after_node(node *old_node, node *new_node);
 //Adds new_node after old_node.
 
-int insert_to_linked_list(linked_list *linked_list, node *new_node);
+int insert_node_to_linked_list(linked_list *ll, node *new_node);
 /* 
  * Adds a new node to a linked list.
  * return value: 0 -> success
  *               1 -> node is NULL
  */
 
-node *find_in_linked_list_previous(linked_list *linked_list, char *string);
+int insert_to_linked_list(linked_list *ll, char *string, void *data);
+/*
+ * Create node and insert it to list
+ * return value: 0 -> success
+ *               1 -> existing string
+ */
+
+node *find_in_linked_list_previous(linked_list *ll, char *string);
 //finds the node of the given string and returns pointer to the previous node. Else returns NULL
 
-node *find_in_linked_list(linked_list *linked_list, char *string);
+node *find_in_linked_list(linked_list *ll, char *string);
 //finds the node of the given string and returns pointer to it. Else returns NULL
 
 int delete_next_node(node *prev_node);
@@ -44,7 +51,7 @@ int delete_next_node(node *prev_node);
  *return value: 0 -> success
  *              1 -> not existing node
  */
-int delete_from_linked_list(linked_list *linked_list, char *string);
+int delete_from_linked_list(linked_list *ll, char *string);
 /* 
  * Deletes a new node after old node.
  * return value: 0 -> success
@@ -52,10 +59,10 @@ int delete_from_linked_list(linked_list *linked_list, char *string);
  *              -1 -> fail
  */
 
-void delete_linked_list(linked_list *linked_list);
+void delete_linked_list(linked_list *ll);
 //deletes linked list
 
-void print_linked_list(linked_list *linkedlist);
+void print_linked_list(linked_list *ll);
 //prints all nodes (just the strings)
 
 #endif  //!__LINKED_LISTS__H__

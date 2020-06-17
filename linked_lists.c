@@ -44,7 +44,8 @@ node *init_node(char *string, void *data)
     char *res = strcpy(nd->string, string);
     if (res != nd->string) { fprintf(stderr, "linked_lists.c/init_node/strcpy() unexpected return value.\n"); exit(1); }
 
-    nd->data = (typeof(data))data;
+    nd->data = malloc(sizeof(typeof(data)));
+    memcpy(nd->data, data, sizeof(typeof(data)));
     nd->next = NULL;    
 
     return nd;
@@ -58,7 +59,7 @@ void insert_after_node(node *old_node, node *new_node)
     old_node->next = new_node;
 }
 
-int insert_to_linked_list(linked_list *linked_list, node *new_node)
+int insert_node_to_linked_list(linked_list *ll, node *new_node)
 {
     if (new_node == NULL) {
         return 1;
@@ -67,7 +68,7 @@ int insert_to_linked_list(linked_list *linked_list, node *new_node)
     node *ptr;
 
     //find the last node with lower value than the new node
-    for (ptr = linked_list->head; ptr->next != NULL && strcmp(ptr->next->string, new_node->string) > 0; ptr = ptr->next);
+    for (ptr = ll->head; ptr->next != NULL && strcmp(ptr->next->string, new_node->string) > 0; ptr = ptr->next);
     
     //add the new node afther the node we found
     insert_after_node(ptr, new_node);
@@ -75,11 +76,23 @@ int insert_to_linked_list(linked_list *linked_list, node *new_node)
     return 0;
 }
 
-node *find_in_linked_list_previous(linked_list *linked_list, char *string)
+int insert_to_linked_list(linked_list *ll, char *string, void *data)
+{
+    if (find_in_linked_list(ll, string)) {
+        return 1;
+    }
+    node *nd = init_node(string, data);
+    int res = insert_node_to_linked_list(ll, nd);
+    if (res == 1) { fprintf(stderr, "linked_lists.c/insert_to_linked_list()/insert_node_to_linked_list unexpected return value.\n"); exit(1); }
+
+    return 0;
+}
+
+node *find_in_linked_list_previous(linked_list *ll, char *string)
 {
     node *ptr;
 
-    for (ptr = linked_list->head; ptr->next != NULL && strcmp(ptr->next->string, string) != 0; ptr = ptr->next);
+    for (ptr = ll->head; ptr->next != NULL && strcmp(ptr->next->string, string) != 0; ptr = ptr->next);
 
     if (ptr->next == NULL) {
         return NULL;
@@ -89,9 +102,9 @@ node *find_in_linked_list_previous(linked_list *linked_list, char *string)
     }
 }
 
-node *find_in_linked_list(linked_list *linked_list, char *string)
+node *find_in_linked_list(linked_list *ll, char *string)
 {
-    node *ptr = find_in_linked_list_previous(linked_list, string);
+    node *ptr = find_in_linked_list_previous(ll, string);
 
     if (ptr == NULL) {
         return NULL;
@@ -117,10 +130,10 @@ int delete_next_node(node *prev_node)
     return 0;
 }
 
-int delete_from_linked_list(linked_list *linked_list, char *string)
+int delete_from_linked_list(linked_list *ll, char *string)
 {
     //fing previous node
-    node *prev_node = find_in_linked_list_previous(linked_list, string);
+    node *prev_node = find_in_linked_list_previous(ll, string);
 
     if (prev_node == NULL) {
         return 1;
@@ -136,24 +149,25 @@ int delete_from_linked_list(linked_list *linked_list, char *string)
     }
 }
 
-void delete_linked_list(linked_list *linked_list)
+void delete_linked_list(linked_list *ll)
 {
     node *ptr;
 
-    for (ptr = linked_list->head; ptr != NULL; ptr = ptr->next) {
+    for (ptr = ll->head; ptr != NULL; ptr = ptr->next) {
+        free(ptr->data);
         free(ptr);
     }
 
-    free(linked_list);
-    linked_list = NULL;
+    free(ll);
+    ll = NULL;
 }
 
-void print_linked_list(linked_list *linkedlist)
+void print_linked_list(linked_list *ll)
 {
     node *ptr;
 
-    printf("##");
-    for (ptr = linkedlist->head; ptr->next != NULL; ptr = ptr->next) {
+    printf("##\n");
+    for (ptr = ll->head; ptr->next != NULL; ptr = ptr->next) {
         printf("%s\n", ptr->next->string);
     }
 }
