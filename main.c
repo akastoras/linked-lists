@@ -13,7 +13,7 @@ int main(void)
     node *nd;
     char string[17] = {'\0'};
     char c = '\0';
-    int num;
+    int num, res;
 
     help();
 
@@ -24,7 +24,10 @@ int main(void)
         case 'a': {
             scanf("%16s %d", string, &num);
 
-            insert_to_linked_list(ll, string, &num);
+            res = insert_to_linked_list(ll, string, &num);
+            if (res == 1) {
+                printf("Existing string.");
+            }
             break;
         }
         case 'f': {
@@ -40,9 +43,17 @@ int main(void)
             break;
         }
         case 'd': {
+            scanf("%16s", string);
+
+            res = delete_from_linked_list(ll, string);
+            if (res == 1) {
+                printf("Non existing node.\n");
+            }
             break;
         }
         case 'c': {
+            delete_linked_list(ll);
+            ll = init_linked_list();
             break;
         }
         case 'p': {
@@ -50,6 +61,7 @@ int main(void)
             break;
         }
         case 'q': {
+            delete_linked_list(ll);
             return 0;
             break;
         }

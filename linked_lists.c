@@ -116,7 +116,7 @@ node *find_in_linked_list(linked_list *ll, char *string)
 
 int delete_next_node(node *prev_node)
 {
-    if (prev_node->next) {
+    if (prev_node->next == NULL) {
         return 1;
     }
 

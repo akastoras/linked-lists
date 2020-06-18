@@ -56,7 +56,6 @@ int delete_from_linked_list(linked_list *ll, char *string);
  * Deletes a new node after old node.
  * return value: 0 -> success
  *               1 -> node is NULL
- *              -1 -> fail
  */
 
 void delete_linked_list(linked_list *ll);
