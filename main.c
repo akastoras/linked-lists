@@ -7,8 +7,12 @@ The data in this program is an int number*/
 
 void help();
 
-int main(void)
-{
+int main(int argc, char **argv)
+{   
+    if (argc > 1) {
+        printf("Usage: %s\n", argv[0]);
+        return 0;
+    }
     linked_list *ll = init_linked_list();
     node *nd;
     char string[17] = {'\0'};
@@ -26,7 +30,7 @@ int main(void)
 
             res = insert_to_linked_list(ll, string, &num);
             if (res == 1) {
-                printf("Existing string.");
+                printf("Existing string.\n");
             }
             break;
         }
@@ -75,12 +79,12 @@ int main(void)
 
 void help()
 {
-    printf("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n");
-    printf("a <name> <num>: to add to list\n");
-    printf("f <name>: to find in list\n");
-    printf("d <name>: to delete from list\n");
-    printf("c: to clear list\n");
-    printf("p: to print list\n");
-    printf("q: to quit\n");
-    printf("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n");
+    printf("\n* * * * * * * * * * * * * * * * * * * *\n");
+    printf("* a <name> <num>: to add to list      *\n");
+    printf("* f <name>: to find in list           *\n");
+    printf("* d <name>: to delete from list       *\n");
+    printf("* c: to clear list                    *\n");
+    printf("* p: to print list                    *\n");
+    printf("* q: to quit                          *\n");
+    printf("* * * * * * * * * * * * * * * * * * * * \n");
 }

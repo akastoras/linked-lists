@@ -38,7 +38,7 @@ node *init_node(char *string, void *data)
 
     //initialize node
     do {
-        nd->string = malloc(strlen(string) * sizeof(char));
+        nd->string = malloc((strlen(string) + 1) * sizeof(char));
     } while(nd->string == NULL);
 
     char *res = strcpy(nd->string, string);
@@ -151,11 +151,13 @@ int delete_from_linked_list(linked_list *ll, char *string)
 
 void delete_linked_list(linked_list *ll)
 {
-    node *ptr;
+    node *ptr, *ptr2;
 
-    for (ptr = ll->head; ptr != NULL; ptr = ptr->next) {
-        free(ptr->data);
-        free(ptr);
+    for (ptr = ll->head; ptr != NULL; ) {
+        ptr2 = ptr;
+        ptr = ptr->next;
+        free(ptr2->data);
+        free(ptr2);
     }
 
     free(ll);
