@@ -1,7 +1,15 @@
+/*
+ *  The following Functions are used to implement a simple 
+ * linked list sorted by strings with pointers to
+ * undefined-datatype data.
+ * 
+ * Code by: Athanasios Kastoras
+ * Electrical and Computer Engineering | University of Thessaly
+ */
 #ifndef __LINKED_LISTS__H__
 #define __LINKED_LISTS__H__ 1
 
-// Structs
+/*   Structs   */
 
 typedef struct node {
     char *string;
@@ -10,15 +18,16 @@ typedef struct node {
 } node;
 
 typedef struct linked_list {
-    node *head; //head.string = NULL and head.data = NULL
+    node *head;
     int size;
 } linked_list;
 
-// Functions
+/*   Functions   */
 
 linked_list *init_linked_list();
-//initialize new linked list, returns pointer to it. NULL for fail.
-    
+/*
+ * Initialize new linked list, returns pointer to it. NULL for fail.
+ */   
 node *init_node(char *string, void *data);
 //create a node, set data pointer to struct data. NULL for fail.
 
@@ -40,28 +49,35 @@ int insert_to_linked_list(linked_list *ll, char *string, void *data);
  */
 
 node *find_in_linked_list_previous(linked_list *ll, char *string);
-//finds the node of the given string and returns pointer to the previous node. Else returns NULL
-
+/*
+ * Finds the node of the given string and returns pointer to the previous node.
+ * Else returns NULL.
+ */
 node *find_in_linked_list(linked_list *ll, char *string);
-//finds the node of the given string and returns pointer to it. Else returns NULL
-
+/*
+ * Finds the node of the given string and returns pointer to it.
+ * Else returns NULL.
+ */
 int delete_next_node(node *prev_node);
 /*
  *Deletes the node after the given node
- *return value: 0 -> success
+ *Return value: 0 -> success
  *              1 -> not existing node
  */
 int delete_from_linked_list(linked_list *ll, char *string);
 /* 
  * Deletes a new node after old node.
- * return value: 0 -> success
+ * Return value: 0 -> success
  *               1 -> node is NULL
  */
 
 void delete_linked_list(linked_list *ll);
-//deletes linked list
-
+/*
+ * Deletes linked list.
+ */
 void print_linked_list(linked_list *ll);
-//prints all nodes (just the strings)
+/*
+ * Prints all nodes (just the strings).
+ */
 
 #endif  //!__LINKED_LISTS__H__
