@@ -4,7 +4,6 @@ The data in this program is an int number*/
 #include "linked_lists.h"
 #include <stdio.h>
 
-
 void help();
 
 int main(int argc, char **argv)
