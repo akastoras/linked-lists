@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "linked_lists.h"
 
-
 linked_list *init_linked_list()
 {
     //allocate memory for the linked list struct
