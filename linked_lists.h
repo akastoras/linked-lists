@@ -1,5 +1,5 @@
 /*
- *  The following Functions are used to implement a simple 
+ *  The following Functions are used to implement a simple
  * linked list sorted by strings with pointers to
  * undefined-datatype data.
  * 
