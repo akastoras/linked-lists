@@ -9,10 +9,10 @@ You can use the library with any data type.
 
 ## If you want to use it: 
 
-Clone this repository: `git clone https://github.com/akastoras/Linked-Lists-Method-Library`
+Clone this repository: `$ git clone https://github.com/akastoras/Linked-Lists-Method-Library`
 
 Write your code on `main.c`.
 
-Compile: `make`
+Compile: `$ make`
 
-Run: `./main`
+Run: `$ ./main`
