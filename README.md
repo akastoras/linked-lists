@@ -1,4 +1,4 @@
-# Linked_Lists_Method_Library
+# linked-lists-method-library
 A library with functions for using a linked list, sorted by a string.
 
 
