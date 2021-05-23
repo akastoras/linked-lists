@@ -15,6 +15,4 @@ Write your code on `main.c`.
 
 Compile: `$ make`
 
-Create static library: `$ ar -rc liblinkedlists.a linked_list.o`
-
 Run: `$ ./main`
