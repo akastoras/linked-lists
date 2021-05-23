@@ -7,7 +7,7 @@ This repo is a implementation of linked list functions. It represents the start 
 main.c simply presents the functionality of the library.
 You can use the library with any data type.
 
-## If you want to use it: 
+## Usage
 
 Clone this repository: `$ git clone https://github.com/akastoras/Linked-Lists-Method-Library`
 
